@@ -1,6 +1,6 @@
 # Method pattern: discovery interview
 
-Discovery interviews are generative qualitative research — open-ended 1:1 conversations that surface user problems, behaviors, motivations, and context-of-use. The question is exploratory ("what's going on?"), not evaluative ("does this design work?"). See `references/patterns/methodology-selection.md` for how this method gets picked; this file shapes the brief once it has been selected.
+Discovery interviews are generative qualitative research — open-ended 1:1 conversations that surface user problems, behaviors, motivations, and context-of-use. The question is exploratory ("what's going on?"), not evaluative ("does this design work?"). See `references/methodology-selection.md` for how this method gets picked; this file shapes the brief once it has been selected.
 
 ## When this pattern applies
 
@@ -159,7 +159,7 @@ Quick checklist of what the discovery-interview pattern adds to the default brie
 
 ## Cross-references
 
-- Methodology selection: `references/patterns/methodology-selection.md`
+- Methodology selection: `references/methodology-selection.md`
 - AI moderation fit (run this check if AI moderation is being considered): `references/patterns/methods/ai-moderation-fit.md`
 - Question writing (specific / actionable / practical filter): `references/question-writing.md`
 - Anti-patterns library (full): `references/anti-patterns.md`
