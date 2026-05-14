@@ -53,6 +53,120 @@ The default brief should name which variant is being run. Four variants share mo
 
 If the brief is ambiguous about which variant fits, default to moderated 1:1 and flag the alternatives in the methodology section so the team can choose.
 
+## Comparative variant
+
+The comparative variant of usability testing applies when the team needs to choose between alternatives — A vs. B designs, the existing IA vs. the proposed redesign, two candidate flows, or a set of concept directions. The question is no longer "does this work?" but "*which* works better?" This is Pejman's *alternative selection* decision-intent category. Method choices, defaults, and brief content all shift accordingly.
+
+### When the comparative variant applies
+
+Use the comparative variant when the research question matches one of these shapes:
+
+- "Which of these two (or three) designs lets users complete [task] more easily?"
+- "Does the redesigned IA outperform the existing one on [findability tasks]?"
+- "Between these flows, which one users prefer — and why?"
+- "Should we ship Concept A, Concept B, or something else?"
+- "Does Version 2 fix the friction we saw in Version 1?"
+
+Triggers for routing here:
+
+- The team has named alternatives explicitly. Vague "well, we have some directions" is not alternative selection — that's still discovery.
+- The decision is between, not about, designs. The team has decided to ship *something*; the question is *which*.
+- Each alternative is mature enough to be testable on the same tasks. Mismatched fidelity (a polished prototype vs. a rough sketch) will bias the comparison — equalize fidelity before testing.
+
+Do NOT use the comparative variant when:
+
+- Only one design exists — that's the standard variant.
+- The alternatives haven't been built or sketched yet — run discovery interviews to inform what alternatives are worth building.
+- The team is fishing for permission to ship a specific one — that's validation theater. Surface the bias and reframe.
+
+### Method options
+
+Several specific methods fit alternative-selection questions. Pick by the shape of the comparison:
+
+- **Side-by-side preference test.** Participants see both designs simultaneously (or in close succession) and pick one. Fast, clean, but vulnerable to first-impression effects and surface-aesthetic bias. Best for short, visual comparisons where the goal is preference signal, not task signal.
+- **Comparative tree test.** Each participant runs the same findability tasks against both candidate IAs (counterbalanced order). Produces per-task success rates per IA, which is the cleanest comparative output for navigation work. See `references/patterns/methods/card-sort.md` for tree-test mechanics.
+- **Sequential comparison (within-subjects).** Each participant attempts the same tasks first on Design A, then Design B (with order counterbalanced across participants). Highest signal — same participant on both means the comparison controls for individual differences. Risk: learning effects (participants get faster on the second flow regardless), which is what counterbalancing exists to manage.
+- **Between-subjects comparison.** Half the participants test Design A, half test Design B. No learning effect, but you need roughly 2× the sample size to get the same statistical power. Use when learning effects would dominate (e.g., the flows are similar enough that a participant who's already done one is no longer naïve).
+- **5-second test (paired).** Participants see one design for 5 seconds, then answer recall questions; repeat with the other. Useful for first-impression and information-hierarchy comparisons on landing pages or marketing surfaces. Cheap, fast, narrow.
+
+Default choices:
+
+- *Flow comparison:* sequential comparison (within-subjects), counterbalanced.
+- *IA comparison:* comparative tree test.
+- *Landing page or hero comparison:* 5-second test (paired).
+- *Pure visual preference:* side-by-side preference test (and flag the bias risks).
+
+### Defaults
+
+**Sample size:** 10–15 participants per audience segment for quantitative comparison. The doubled-up-versus-standard floor reflects that comparative claims need tighter confidence than single-design diagnosis. For between-subjects, double again — 10–15 *per arm*.
+
+**Counterbalancing:** Always randomize which alternative the participant sees first. For within-subjects designs, alternate order across participants (half see A→B, half see B→A). Order effects are the most common comparative-variant artifact.
+
+**Equalized fidelity:** Both alternatives at the same level of polish before testing. A high-fidelity Figma vs. a paper sketch is a comparison of fidelity, not design. Spend the prep time on equalization.
+
+**Equalized task surface:** Both alternatives should support the same tasks. If Design B can't even attempt Task 3, don't test Task 3 on Design A — the comparative claim becomes lopsided and unfair.
+
+**Session length:** 45–75 minutes for within-subjects (longer because each participant runs both flows). 30–60 minutes for between-subjects.
+
+**Preference question placement:** Ask preference *after* both flows are complete, not in between. Mid-flow preference questions prime the participant for the second flow and corrupt task data.
+
+### Brief additions
+
+The default usability brief sections all apply, plus:
+
+- **Alternatives being compared (explicit).** Name each alternative, link to the artifact, and state the fidelity level. "Design A: existing live product. Design B: high-fidelity Figma prototype rev 4." Mismatched fidelity gets surfaced and resolved before testing — no asterisks in the readout.
+- **Comparison method named.** Side-by-side / comparative tree / sequential within-subjects / between-subjects / 5-second. With the rationale tying it to the question.
+- **Order counterbalancing plan.** "Half the participants see A→B; half see B→A. Randomized by recruit-order parity." Or whatever scheme — the brief states it explicitly.
+- **Success criterion (decision rule).** What threshold determines a winner. Default: a winner requires ≥60% preference (for preference tests) or a clear per-task advantage (for sequential comparisons — e.g., Design B beats Design A on ≥3 of 5 tasks by a meaningful margin). Below the threshold, the result is "no clear winner" — name that outcome explicitly so the team can pre-commit to what they'll do if it lands there.
+- **How the loser is handled.** Critical and often skipped. If Design B wins, does Design A get killed entirely, or do its strengths get folded back into B? If neither wins, what's the fallback? Naming this in the brief prevents the post-readout argument over what to do with the "losing" design.
+- **Task set held constant.** Same tasks across both alternatives, ordered consistently within each participant's run. Different task sets per alternative is a different study, not a comparative one.
+
+### Examples
+
+**Good comparative success criterion:**
+
+> Design B "wins" if it produces a higher task-completion rate than Design A on at least 3 of 5 tasks *and* a higher post-test preference vote (≥60% of participants). If only one of those holds, the result is "mixed — fold Design B's wins into Design A's frame and retest." If neither, we ship Design A unchanged.
+
+This is pre-committed. The team knows what they'll do at each outcome before they see the data.
+
+**Bad comparative success criterion:**
+
+> We want to see which design users prefer.
+
+No threshold, no decision rule, no plan for ambiguous results. The team will negotiate the outcome post-hoc, which is how comparative tests turn into validation theater.
+
+**Good order-counterbalancing plan:**
+
+> Participants 1, 3, 5, 7, 9 see Design A first, then Design B. Participants 2, 4, 6, 8, 10 see Design B first, then Design A. Order recorded as a column in the results table.
+
+**Bad order-counterbalancing plan:**
+
+> We'll show them both designs.
+
+No order discipline. Order effects will silently bias the results.
+
+**Good "which do you prefer" framing (post-test, follow-up probe):**
+
+> Now that you've used both versions, if you had to pick one to use every day, which would it be? — and then — what specifically led you to that choice?
+
+The follow-up probe is the signal. The preference vote alone is a coin flip with extra steps; the *why* is what tells the team what made the difference.
+
+**Bad framing (as the only question):**
+
+> Which one do you like better?
+
+Surface preference, no diagnosis, no behavioral anchor. Liking is not using.
+
+### Comparative-variant anti-patterns
+
+- **Showing both at once for sequential evaluation.** Side-by-side priming is a known artifact: the first one becomes the anchor and the second gets evaluated against it. If you *want* preference signal, side-by-side is fine; if you want task-completion signal, separate the alternatives in time.
+- **No counterbalancing.** Without alternating order, the second flow always has the learning-effect advantage. The comparison is meaningless. Counterbalance or stop.
+- **"Which do you like better" as the only question.** Preference without diagnosis is not actionable. Pair every preference question with at least one "why" probe and one behavior measure (task completion, time on task, error count).
+- **Mismatched fidelity treated as a footnote.** "Design B is a polished prototype and Design A is a sketch, but participants seem to prefer B." Of course they do. Equalize fidelity before testing — or run a different kind of study.
+- **Mismatched task surfaces.** Asking Design A to support 5 tasks and Design B to support 3 of those 5, then comparing. The comparison is structurally unfair. Cut to the shared task set or don't run the comparative variant.
+- **Vague decision rule.** No pre-committed threshold for what counts as a win, so the team negotiates the outcome after seeing the data. Always specify the decision rule up front.
+- **Skipping the "how is the loser handled" question.** The brief states what success looks like but not what happens to the design that loses. The team ships the winner, the design lead pushes back on losing entirely, and the team ends up with a third design that wasn't tested. Name the loser-handling plan in the brief.
+
 ## Defaults
 
 **Sample size:** N=5 participants per audience segment, per Nielsen's classic finding that ~5 users surface ~85% of usability issues. UI's Field Guide cites the same range (3–10 for qualitative interviews; 5–8 for A/B; tree and card sort lean higher at ≥15 per group). If the brief covers multiple distinct audiences (e.g., admins and end users), run 5 per segment. Add an 11% no-show buffer (NN/g) when scheduling.
@@ -160,7 +274,7 @@ Name a synthesis owner and a target readout date in the brief. Without those, us
 
 Quick checklist of what the usability-testing pattern adds to the default brief. The agent generating the brief should confirm each item is present:
 
-- [ ] Method variant named (moderated 1:1 / unmoderated / first-click / tree).
+- [ ] Method variant named (moderated 1:1 / unmoderated / first-click / tree / comparative).
 - [ ] Artifact under test linked (Figma URL, prototype, live page).
 - [ ] 3–5 task scenarios drafted, each phrased as a goal not an instruction.
 - [ ] Success criteria per task (completed / completed with friction / failed) defined before sessions.
@@ -168,11 +282,12 @@ Quick checklist of what the usability-testing pattern adds to the default brief.
 - [ ] Think-aloud protocol named and a moderator opener drafted.
 - [ ] 2–3 minute warm-up question included.
 - [ ] 5–10 minute debrief structure included.
-- [ ] Sample size: 5 per audience segment + 11% no-show buffer.
-- [ ] Session length: 30–60 min moderated / 15–30 min unmoderated.
+- [ ] Sample size: 5 per audience segment + 11% no-show buffer (10–15 per segment for comparative variant).
+- [ ] Session length: 30–60 min moderated / 15–30 min unmoderated / 45–75 min within-subjects comparative.
 - [ ] Recording plan with consent language.
 - [ ] Pilot session scheduled before the main round.
 - [ ] AI-moderation fit check run if AI moderation is on the table.
+- [ ] *If comparative:* alternatives named with equalized fidelity, comparison method chosen, counterbalancing scheme stated, decision rule pre-committed, loser-handling plan named.
 
 ## Cross-references
 
@@ -182,3 +297,4 @@ Quick checklist of what the usability-testing pattern adds to the default brief.
 - Anti-patterns library (full): `references/anti-patterns.md`
 - Question writing (specific / actionable / practical filter): `references/question-writing.md`
 - Discovery interview (upstream method when no artifact exists yet): `references/patterns/methods/discovery-interview.md`
+- Card sort and tree test (paired IA work; comparative tree test variant lives there): `references/patterns/methods/card-sort.md`
