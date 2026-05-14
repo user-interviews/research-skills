@@ -56,6 +56,48 @@ Replace the generic "next 2 weeks" schedule with a 15-day, phase-keyed calendar.
 
 If the team can't commit people to these dates, do not run the study. Slipping any phase by 2+ days breaks the cadence — at that point, you're running normal-pace research badly.
 
+## Express variant (1-3 days)
+
+A tighter sub-variant of rapid cadence for cases where modern AI-moderated, unmoderated, or in-product methods can produce directional signal in days, not weeks. Express is **not** "rapid, but faster" — it's a different shape, with a narrower scope gate and a bounded method shortlist.
+
+### When Express applies
+
+Apply Express only when **all five** are true:
+
+- **Scope is narrow.** One specific question, not exploratory. "Does the new pricing copy read as 'per-seat' or 'flat-rate'?" qualifies. "How do users feel about pricing?" does not.
+- **The decision is binary or short-list.** Pick A vs. B, ship vs. don't, top 3 of 8. If the decision space is open-ended, Express won't close it.
+- **Method permits.** AI-moderated, unmoderated, in-product survey, or async-short-diary only. Real-time human probing doesn't fit a 1-3 day window.
+- **Audience accepts directional evidence.** The consumer of insights is choosing speed-to-decision over thoroughness, and knows the readout will be directional. If the audience needs defensible quantitative anchors or executive-grade rigor, Express is wrong.
+- **Foundational fields are already clear before kickoff.** Why / What / Who (audience + subjects) are confirmed. Express has no slack for re-scoping mid-study.
+
+If any of these fail, fall back to the 15-day rapid cadence above. The temptation to compress further when a foundational field is fuzzy is the most common failure mode.
+
+### Timeline (1-3 day scaffold)
+
+- **Day 1 morning** — Pressure-test the discussion guide / unmoderated tasks / survey questions (yourself or a teammate). Catch broken logic, ambiguous wording, mis-firing branching before it scales.
+- **Day 1 afternoon → Day 2 morning** — Recruit + field. Use an existing customer panel, in-product survey, or async unmoderated platform. No cold recruiting on this timeline.
+- **Day 2 afternoon → Day 3 morning** — Quick synthesis. Budget ~10 minutes per response or session. Capture the top 3 findings, not all signals.
+- **Day 3 afternoon** — Readout. 15-min Slack post or 1-page memo. No deck. Decision-maker sees it the same day fielding closed.
+
+### Methods bounded to
+
+- **AI-moderated interview** (Outset/Strella style). Pressure-test the guide before launch — see `references/patterns/methods/ai-moderation-fit.md`.
+- **Unmoderated usability test** (Maze, UserTesting). Tasks, not interviews.
+- **In-product survey** (Sprig, Pendo). ≤5 questions, targeted segment.
+- **Async diary** — 1-2 entries only, not longitudinal. If the question needs >2 entries, it's not an Express question.
+
+### NOT for
+
+- **Strategic decisions** — positioning, market entry, roadmap pivots. These need depth Express can't provide.
+- **Niche populations** — recruiting alone will take longer than 1-3 days. If the audience needs custom sourcing, fall back to rapid or standard.
+- **Generative discovery** — Express cannot answer "what don't we know we don't know." Generative work needs human probing and follow-up loops.
+
+### Anti-patterns
+
+- **Skipping the pressure-test "to save time"** — Quality drops sharply at scale without it. The Day 1 morning pressure-test is non-negotiable; it's what makes the rest of the timeline trustworthy.
+- **Express on a strategic question** — Wrong scope. If the answer changes a quarterly plan, Express isn't the right vehicle.
+- **Treating Express as the default** — Express is for narrow, well-scoped questions with clear foundational framing. A team that defaults to Express will produce a stream of directional answers that don't add up to anything decision-grade.
+
 ### 2. ReOps section is mandatory
 
 Rapid cadence only works with a clear team model. Add a **ReOps** section to the brief naming who fills each role:
