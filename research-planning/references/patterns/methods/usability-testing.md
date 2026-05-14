@@ -1,6 +1,6 @@
 # Method pattern: usability testing
 
-Usability testing evaluates a specific design, flow, or prototype against task-based criteria. The question is evaluative ("does this work?"), not generative ("what should we build?"). See `references/patterns/methodology-selection.md` for how this method gets picked; this file shapes the brief once it has been selected.
+Usability testing evaluates a specific design, flow, or prototype against task-based criteria. The question is evaluative ("does this work?"), not generative ("what should we build?"). See `references/methodology-selection.md` for how this method gets picked; this file shapes the brief once it has been selected.
 
 ## When this pattern applies
 
@@ -176,7 +176,7 @@ Quick checklist of what the usability-testing pattern adds to the default brief.
 
 ## Cross-references
 
-- Methodology selection: `references/patterns/methodology-selection.md`
+- Methodology selection: `references/methodology-selection.md`
 - AI moderation fit (mandatory check if AI moderation is on the table): `references/patterns/methods/ai-moderation-fit.md`
 - Sample sizes (authoritative table): `references/sample-sizes.md`
 - Anti-patterns library (full): `references/anti-patterns.md`
