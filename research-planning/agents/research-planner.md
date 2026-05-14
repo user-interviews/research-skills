@@ -113,7 +113,7 @@ Given the refined question, Why/What/Who, and surfaced assumptions, identify whi
 
 **Context patterns** (`${CLAUDE_PLUGIN_ROOT}/references/patterns/contexts/`) — apply based on conditions:
 
-- `rapid-cadence.md` — if timeline < 2 weeks. One-shot study, tactical question.
+- `rapid-cadence.md` — if timeline < 2 weeks. One-shot study, tactical question. **If timeline is Express (1-3 days), apply the Express variant section of `rapid-cadence.md` instead of the 15-day default.** Express adds a stricter scope gate (narrow question, binary/short-list decision, foundational fields already clear) and bounds methods to AI-moderated, unmoderated, in-product survey, or async-short-diary only.
 - `continuous-cadence.md` — if the user describes an *ongoing practice* rather than a one-shot study. Trigger language: "continuous discovery," "weekly customer conversations," "ongoing learning cadence," "always-on research," "discovery rhythm." This is a cadence/practice, not a study — the brief's shape changes accordingly. Note: `rapid-cadence` and `continuous-cadence` are opposites, not variants — they never apply simultaneously.
 - `ai-augmented-research.md` — if user mentions AI involvement in any role.
 
@@ -127,7 +127,7 @@ Load `${CLAUDE_PLUGIN_ROOT}/references/methodology-selection.md`. Run the multi-
 2. **Product-cycle stage** → method category (Discovery / Validation / Continuous)
 3. **Pejman's 3 decision-intent categories** → method type (exploratory ideation / alternative selection / design-intent assessment)
 4. **Generative vs. evaluative** distinction
-5. **Budget / timeline** floor (default n=5; rapid limits to tactical methods)
+5. **Budget / timeline** floor (default n=5; rapid limits to tactical methods; Express (1-3 days) limits further to AI-moderated, unmoderated, in-product survey, or async-short-diary only)
 6. **Evidence the Who finds compelling** (informs qual vs. quant tradeoff)
 7. **Analytics-first sequencing** — can existing data or secondary research answer this first?
 
@@ -151,6 +151,16 @@ Fill in each section based on the work from Steps 2–7. Sub-fields:
 - **Next steps**: deliverables, activation plan, follow-up
 
 Reference `${CLAUDE_PLUGIN_ROOT}/references/sample-sizes.md` for the canonical N-by-method table + 11% no-show buffer.
+
+For the **When and where** section, if the user hasn't already named a timeline, surface the options:
+
+- **Express (1-3 days)** — narrow scope, well-defined question, AI-moderated or unmoderated only. Requires foundational fields (Why / What / Who) already clear and decision binary or short-list. See the Express variant in `${CLAUDE_PLUGIN_ROOT}/references/patterns/contexts/rapid-cadence.md`.
+- **Rapid (1-2 weeks)** — tactical, 15-day per-day timeline applies. See `${CLAUDE_PLUGIN_ROOT}/references/patterns/contexts/rapid-cadence.md`.
+- **Standard (3-6 weeks)** — default for most studies.
+- **In-depth (6+ weeks)** — multi-segment, multi-method, foundational.
+- **Flexible** — user has no timeline pressure; recommend Standard.
+
+If the user picks Express, verify that Why / What / Who are already clear AND the method permits (AI-moderated, unmoderated, in-product survey, or async-short-diary) — otherwise route them to Rapid. If Express applies, apply the Express variant section of `rapid-cadence.md` in Step 6 routing.
 
 For project-type-specific additions (rare; most briefs use the default only), apply the pattern's section additions.
 
