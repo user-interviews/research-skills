@@ -1,6 +1,6 @@
 # Method pattern: survey
 
-Surveys collect structured responses at scale — quantitative measurement, qualitative feedback at volume, or both. The right method when you need numbers, breadth, or open-ended input from more participants than interviews can support. See `references/patterns/methodology-selection.md` for how this method gets picked; this file shapes the brief once it has been selected.
+Surveys collect structured responses at scale — quantitative measurement, qualitative feedback at volume, or both. The right method when you need numbers, breadth, or open-ended input from more participants than interviews can support. See `references/methodology-selection.md` for how this method gets picked; this file shapes the brief once it has been selected.
 
 ## When this pattern applies
 
@@ -198,7 +198,7 @@ Quick checklist of what the survey pattern adds to the default brief. The agent 
 
 ## Cross-references
 
-- Methodology selection: `references/patterns/methodology-selection.md`
+- Methodology selection: `references/methodology-selection.md`
 - Question writing (specific / actionable / practical filter): `references/question-writing.md`
 - Anti-patterns library (full): `references/anti-patterns.md`
 - Sample sizes (authoritative table): `references/sample-sizes.md`
