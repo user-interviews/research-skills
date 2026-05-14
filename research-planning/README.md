@@ -38,6 +38,20 @@ Verify install:
 
 You should see `research-planning` in the installed list.
 
+## Updating
+
+When a new version of the plugin ships, pull it in two steps:
+
+```
+/plugin marketplace update research-skills
+/plugin update research-planning@research-skills
+/reload-plugins
+```
+
+The first command refreshes Claude Code's view of the marketplace (re-fetches latest version info). The second applies any version bump locally. `/reload-plugins` makes the new sub-agent prompt + reference files active in your current session.
+
+If you want updates without the manual two-step, you can enable auto-update in `.claude/settings.json` — see [Claude Code's plugin marketplace docs](https://code.claude.com/docs/en/plugin-marketplaces) for the exact flag.
+
 ## Usage
 
 The slash command takes your research question or topic as an argument:
