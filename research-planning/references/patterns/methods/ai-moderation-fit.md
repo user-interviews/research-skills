@@ -208,7 +208,7 @@ Verdict: Don't field. Pressure-test the guide first; revisit the rubric after pi
 
 ## What the fit check does NOT do
 
-- It does not pick the method. Methodology selection happens upstream in `references/patterns/methodology-selection.md`. The fit check only decides moderator type, given that an interview-style method has already been selected.
+- It does not pick the method. Methodology selection happens upstream in `references/methodology-selection.md`. The fit check only decides moderator type, given that an interview-style method has already been selected.
 - It does not authorize synthetic users as a primary evidence source. Synthetic users have narrow defensible uses (guide pressure-testing, desk research, post-hoc triangulation) and are covered in `references/ai-research-context.md`, not here.
 - It does not eliminate the human researcher's role. AI-moderated studies still require human-led goal setting, guide authoring, pressure-testing, active monitoring, and synthesis.
 - It does not modify the pre-flight gate. The 6-question + Ronsen-7 + Sbrocca-3 + Pejman-4 gates run first. If the study fails the gate, the fit check is moot — the study doesn't happen.
@@ -234,7 +234,7 @@ Quick checklist of what an AI-moderated brief must contain on top of the selecte
 
 ## Cross-references
 
-- Methodology selection (upstream): `references/patterns/methodology-selection.md`
+- Methodology selection (upstream): `references/methodology-selection.md`
 - Pre-flight gate (upstream, always runs first): `references/pre-flight-gate.md`
 - AI research context (synthetic users, role-of-AI taxonomy): `references/ai-research-context.md`
 - Discovery interview method (most-common downstream consumer): `references/patterns/methods/discovery-interview.md`
