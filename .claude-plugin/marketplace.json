@@ -1,0 +1,27 @@
+{
+  "name": "research-skills",
+  "owner": {
+    "name": "User Interviews",
+    "email": "support@userinterviews.com",
+    "url": "https://www.userinterviews.com"
+  },
+  "metadata": {
+    "description": "External Claude Code skills repository for research planning and adjacent workflows. Forkable customer-facing skills drawing on UI's published research methodology.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "research-planning",
+      "source": "./research-planning",
+      "description": "Turn a research question into a structured research brief, drawing on User Interviews' published planning playbook. Apply UI's frameworks for decision-driven research, methodology selection, and AI-moderation fit — without leaving Claude Code.",
+      "version": "0.1.0",
+      "category": "research",
+      "keywords": ["research", "planning", "research-brief", "ux-research", "user-research", "discovery", "methodology"],
+      "author": {
+        "name": "User Interviews",
+        "url": "https://www.userinterviews.com"
+      },
+      "license": "MIT"
+    }
+  ]
+}
