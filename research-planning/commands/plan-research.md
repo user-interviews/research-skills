@@ -12,7 +12,7 @@ Turn a research question (or fuzzy topic) into a structured research brief.
 Invokes the `research-planner` sub-agent, which walks an 11-step planning workflow:
 
 1. Pre-flight gate ("should we even do this research?")
-2. Why / What / Who framing
+2. Why / What / Stakeholders / Research subjects framing
 3. Question refinement (specific / actionable / practical)
 4. Assumption surfacing
 5. Question-storming → prioritize
@@ -41,13 +41,16 @@ The output is a structured brief following User Interviews' canonical 6-field pl
 
 ## What you'll be asked
 
-The sub-agent will likely ask 1–3 clarifying questions before drafting:
+The sub-agent will ask up to four foundational questions, one at a time, before drafting. If your input already covers any of them, the sub-agent skips ahead.
 
-- What decision will this research inform? (the gating question)
-- Who's the audience for the insights — researchers, PMs, designers, executives?
-- What's your timeline / budget context?
+- **Why** — the business or product goal this research serves.
+- **What** — the concrete, immediate decision this research will unblock.
+- **Stakeholders** — who else is involved in this decision or cares about the answer. Plain-English examples: your team, your manager, a specific colleague, engineering leadership, sales, customer success, or just yourself if nobody else is involved. The skill captures relationships and teams, not role-category labels — and "just me" is a common and valid answer.
+- **Research subjects** — the people the research will study (recruiting criteria, screener design, sample size).
 
-If your input already includes these, the sub-agent skips the question and drafts directly.
+After those four are settled the sub-agent runs question refinement, assumption surfacing, methodology selection, and brief drafting on its own. You can also surface a timeline preference (Express 1–3 days / Rapid 1–2 weeks / Standard 3–6 weeks / In-depth 6+ weeks) at any point.
+
+The sub-agent will NOT assume you're a researcher — the skill defaults to plain language for non-researcher users (PM, designer, founder, customer-success, etc.).
 
 ## Customization
 
@@ -60,7 +63,6 @@ Read the user's input from `$ARGUMENTS`. Pass it to the `research-planner` sub-a
 - The full text of `$ARGUMENTS` as the research question/topic
 - Today's date
 - A check for `team-context/team-context.md` — if present, load and pass to the sub-agent
-- An optional project-type hint if the user's message explicitly named one (e.g., "rapid PMF research on X" → hint "rapid + pmf")
 
 The sub-agent owns the workflow and returns the brief.
 
