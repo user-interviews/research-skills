@@ -1,0 +1,13 @@
+{
+  "name": "research-planning",
+  "version": "0.1.0",
+  "description": "Turn a research question into a structured research brief, drawing on User Interviews' published planning playbook. Apply UI's frameworks for decision-driven research, methodology selection, and AI-moderation fit.",
+  "author": {
+    "name": "User Interviews",
+    "url": "https://www.userinterviews.com"
+  },
+  "homepage": "https://github.com/user-interviews/research-skills",
+  "repository": "https://github.com/user-interviews/research-skills",
+  "license": "MIT",
+  "keywords": ["research", "planning", "research-brief", "ux-research", "user-research", "discovery", "methodology"]
+}
