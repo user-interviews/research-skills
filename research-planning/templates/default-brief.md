@@ -40,8 +40,8 @@
 **Sample size**
 [Specific n, with rationale tied to method. Default floor is n=5 for interviews and usability; larger for quant. See `references/sample-sizes.md` for the full table and the 11% no-show buffer.]
 
-**Audience for insights**
-[Who will consume the findings. Keep it brief — 1–3 lines. Name the decision-makers and the implementers who'll act on the work. Full stakeholder mapping is optional and lives in `references/stakeholder-alignment.md` if you want it.]
+**Stakeholders**
+[Specific people / teams who care about this — e.g., your manager, your team, leadership, a specific colleague — or "just me" if nobody else is involved. Name relationships and teams, not role-category labels. These are the people the readout has to land with; if it's just you, say so — that's a valid and common shape and it changes the methodology rubric. Full stakeholder mapping is optional and lives in `references/stakeholder-alignment.md` if you want it.]
 
 ## When and where
 
@@ -57,10 +57,10 @@
 ## Next steps
 
 **Deliverables**
-[What artifacts come out of this — readout deck, written summary, tagged transcripts, prototype directions, executive summary. Match deliverables to the audience identified in "Who."]
+[What artifacts come out of this — readout deck, written summary, tagged transcripts, prototype directions, executive summary. Match deliverables to the stakeholders identified in "Who."]
 
 **Activation plan**
-[How findings will be applied, not just shared. "Delivering an insight report is not enough." Name the rituals or working sessions where the team will act on the work.]
+[How findings will be applied, not just shared. "Delivering an insight report is not enough." Name the rituals or working sessions where the team will act on the work. (If Stakeholders = "just me," activation is simpler — name how you'll act on the findings yourself.)]
 
 **Follow-up**
 [Open questions deferred to a future study, repository updates, longitudinal tracking, follow-up interviews with key participants.]

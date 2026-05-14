@@ -116,7 +116,7 @@ If the decision is strategic and the team is asking for rapid research, refuse-o
 
 Timeline constraints bound the method shortlist:
 
-- **Express timelines (1-3 days)** bound the method shortlist to AI-moderated interview, unmoderated usability, in-product survey, and async-short-diary. Other methods are not viable on this timeline — recruiting, scheduling, and live moderation all need more runway. Express also requires that the foundational fields (Why / What / Who) are already clear and the decision is binary or short-list. See the **Express variant** section of `references/patterns/contexts/rapid-cadence.md`.
+- **Express timelines (1-3 days)** bound the method shortlist to AI-moderated interview, unmoderated usability, in-product survey, and async-short-diary. Other methods are not viable on this timeline — recruiting, scheduling, and live moderation all need more runway. Express also requires that the foundational fields (Why / What / Stakeholders / Research subjects) are already clear and the decision is binary or short-list. See the **Express variant** section of `references/patterns/contexts/rapid-cadence.md`.
 - **Rapid (1-2 weeks)** — applies the 15-day per-day cadence; methods bounded to the tactical shortlist above. See `references/patterns/contexts/rapid-cadence.md`.
 - **Standard (3-6 weeks)** and **In-depth (6+ weeks)** — full method shortlist available.
 
@@ -149,6 +149,20 @@ From NN/g via the Field Guide. Use this when the team is unsure between two clos
 - **Context of use** — natural (diary, ethnography), scripted (usability, intercept), not using (interviews, surveys), or hybrid.
 
 This is the most general cut. Two methods that look similar (interviews vs. focus groups) split cleanly on the attitudinal / behavioral and context-of-use axes.
+
+---
+
+## Solo-stakeholder caveat
+
+If the brief's *Stakeholders* field reads "just me" — the user is the sole consumer of the insights — skip the "what evidence will be compelling to the stakeholders" lens entirely. There's no downstream audience to convince; the user is the producer and the consumer of the work.
+
+When this caveat applies:
+
+- The qual vs. quant tradeoff collapses to: *what evidence do you need to make this call?* Often that's qual depth at a small n, because the goal isn't social proof.
+- The readout / deliverable shape is whatever the user needs for their own thinking — notes, a one-page summary, a tagged transcript. The brief's *Deliverables* field should be sized accordingly, not inflated for an imagined audience.
+- The audience-evidence-compelling axis (Step 7, axis 6 of the agent's rubric) is *skipped*. Don't substitute a synthetic audience ("my future self" / "a hypothetical reviewer") — if it's just the user, say so and move on.
+
+Do not push the user away from "just me" by trying to surface stakeholders they didn't name. Many small, defensible studies have no downstream audience. The skill respects this shape.
 
 ---
 
