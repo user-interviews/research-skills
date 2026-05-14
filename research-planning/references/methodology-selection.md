@@ -112,6 +112,16 @@ Rapid research is **tactical only**. From the corpus:
 
 If the decision is strategic and the team is asking for rapid research, refuse-or-redirect. Either re-scope the decision to something tactical, or commission proper foundational work.
 
+### Budget / timeline floor
+
+Timeline constraints bound the method shortlist:
+
+- **Express timelines (1-3 days)** bound the method shortlist to AI-moderated interview, unmoderated usability, in-product survey, and async-short-diary. Other methods are not viable on this timeline — recruiting, scheduling, and live moderation all need more runway. Express also requires that the foundational fields (Why / What / Who) are already clear and the decision is binary or short-list. See the **Express variant** section of `references/patterns/contexts/rapid-cadence.md`.
+- **Rapid (1-2 weeks)** — applies the 15-day per-day cadence; methods bounded to the tactical shortlist above. See `references/patterns/contexts/rapid-cadence.md`.
+- **Standard (3-6 weeks)** and **In-depth (6+ weeks)** — full method shortlist available.
+
+If a team wants Express but the question is exploratory or the audience needs defensible quant anchors, fall back to Rapid or longer. Express produces directional signal only.
+
 ---
 
 ## Axis 8 — Analytics-first sequencing
