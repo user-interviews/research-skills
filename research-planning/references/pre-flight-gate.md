@@ -54,6 +54,19 @@ The output for any Exit A trigger is an honest redirect to what would actually h
 
 **Signal.** User's framing reveals research is being used to gather evidence supporting a pre-made decision, win an argument, or get political buy-in — not to investigate. Phrases like "we need research to convince leadership," "I need data to push back on X," "we want to prove the case for Y."
 
+### Trigger conditions (refined 2026-05-15 per PAP-224)
+
+A3 fires when AT LEAST TWO of the following four signals are present, AND Phase 1 inference has surfaced at least foundational fields + one prior-knowledge anchor:
+
+1. **Weaponization-language keyword** — *"convince"*, *"make the case for"*, *"build evidence for"*, *"support our decision to"*, *"prove that"*, *"justify"*, *"validate"* in a context implying validation-of-prior-decision rather than learning.
+2. **Already-made-decision tone** — user describes the conclusion before the question. E.g., *"we're moving forward with X; I want data to show it'll work"* vs. *"we're choosing between X and Y; I want data on which to pick."*
+3. **User dismisses alternatives the agent surfaces** — if Phase 1 inference surfaces a possible alternative framing (decision memo, stakeholder alignment, analytics check) and the user rejects each without engagement, that's a signal A3 may apply.
+4. **Topic settled in workspace** — Phase 2 workspace scan finds prior briefs / docs / decisions where this same topic was clearly resolved already. (Only available as a signal once Phase 2 has run.)
+
+**Phase gate (hard rule):** A3 cannot fire on turn 1, on a single keyword match, or before Phase 1 has produced an inferred foundational frame the user has had a chance to push back on. If the user's first message contains a single weaponization keyword but no other signal, the agent acknowledges the framing, continues the workflow, and re-checks A3 after Phase 1 completes. Single-keyword turn-1 firing is explicitly prohibited.
+
+**If A3 fires:** the verbatim reframe phrasing applies (see below) — UNCHANGED.
+
 **Output if triggered.** Produce the verbatim reframe before doing anything else:
 
 > *"Before drafting, I want to make sure: are you trying to investigate whether the project is worth funding, or are you trying to gather evidence to support a decision you've already made? Research can do the first; the second isn't research, it's selective evidence-gathering."*
