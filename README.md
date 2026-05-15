@@ -1,101 +1,67 @@
 # research-skills
 
-A Claude Code plugin (and companion Claude.ai skill) that turns a fuzzy research question into a structured brief — using the same playbook User Interviews' research ops team uses with hundreds of customers.
+User Interviews' open collection of AI workflows for running good research, quickly and effectively. Each workflow is a focused thing you can do — plan a study, design a survey, synthesize transcripts — drawn from the same playbook our research ops team uses with hundreds of customers.
 
-## Three outcomes, not one
+## The playbook
 
-Most planning tools only know how to draft a brief. This one handles three honestly:
+Three pieces of methodology IP carry across every workflow in this repo:
 
-1. **Here's your brief.** Default. Research is the right move; the playbook produces a 6-field brief you can hand to any execution tool.
-2. **Do more digging first.** When the audience is hard to reach and the topic is publicly written about, the plugin recommends a 2-hour desk path — and stands ready to come back for a focused brief on the irreducible gap.
-3. **Research isn't the right fit.** When the work is actually a decision memo, a stakeholder alignment problem, or selective evidence-gathering for a decision already made, the plugin names the right move instead.
+- **The canonical 6-field brief** — What / Why / How / Who / When and where / Next steps. The same structure UI's research team uses for every project. Portable to any execution tool.
+- **The three-outcome decision discipline** — not every research request should produce a study. Sometimes the right move is desk research first; sometimes the request isn't a research problem at all. Workflows in this repo handle all three outcomes as first-class.
+- **The methodology rubric** — three forcing axes (generative vs. evaluative, attitudinal vs. behavioral, qual vs. quant) plus six tiebreakers. Picks methods that actually answer the question, not methods that sound right.
 
-The methodology underneath:
+Plus sample-size discipline (per-method floors, no-show buffers), an anti-pattern list (the failure modes we've watched customers run into for a decade), and pattern recognition for common method+context combinations.
 
-- **Pre-flight gate** from the User Interviews Field Guide — eight conditions that distinguish "this is research" from "this is something else."
-- **Methodology rubric** — three forcing axes (generative-vs-evaluative, attitudinal-vs-behavioral, qual-vs-quant) plus six tiebreakers. Picks methods that actually answer the question, not methods that sound right.
-- **Sample-size discipline** — the canonical NN/g + UI Field Guide tables, not "we'll figure it out."
-- **Anti-pattern list** — the failure modes UI has watched customers run into for a decade. The plugin won't let you ship them.
+## Workflows in this repo
 
-## Example brief
+### research-planning
 
-Here's the kind of artifact the plugin produces. (Real output, lightly tightened.)
+Turn a fuzzy research question into a structured 6-field brief — or honestly redirect when research isn't the right move.
 
-> ### Research Brief: PWDR confidence in their own findings
->
-> **What.**
-> - Research question: *How do non-researcher PMs and designers decide whether their qualitative findings are trustworthy?*
-> - Decision this research enables: *Whether to build a "research quality check" feature inside our product, and what signals it should surface.*
-> - Hypotheses to test: *(1) PWDRs use sample-size heuristics that don't match real-research norms. (2) They feel confident when patterns repeat across 3+ participants. (3) They feel doubt when one participant contradicts a hypothesis.*
->
-> **Why.**
-> - Goal: *We're shipping AI features to help non-researchers feel grounded in their own work; we don't know what calibrates that confidence today.*
-> - What we'd do without this: *Ship the feature based on internal hypotheses; risk solving a non-problem.*
->
-> **How.**
-> - Method: *Generative 1:1 interviews, 5-8 PWDRs across PM and design roles.*
-> - Role of AI: *Input — agent can help draft the guide. NEVER substitute for real participants.*
-> - Moderation: *Human-moderated; PWDR self-reports are attitudinal and benefit from probing.*
->
-> **Who.**
-> - Participants: *PMs and designers running their own research at SaaS companies, 2-5 yrs in role, no formal research training.*
-> - Sample size: *n=6 (3 PMs, 3 designers); over-recruit by 1 per segment.*
-> - Stakeholders: *Just me, with marketing as a downstream execution partner.*
->
-> **When and where.**
-> - Timeline: *2 weeks (recruiting Mon-Wed, fielding Thu-following-Tue, synthesis Wed-Thu).*
-> - Tools: *User Interviews MCP for recruiting; Granola for transcription; Notion for synthesis.*
->
-> **Next steps.**
-> - Deliverables: *4-page brief, tagged transcripts, 2-3 product implications.*
-> - Activation: *Walk findings through with the feature team Friday week 2; book follow-ups with any PWDR who surfaced a strong signal.*
+- **Surfaces:** Claude Code (plugin) · Claude.ai chat (skill)
+- **Install in Claude Code:**
+  ```
+  /plugin marketplace add user-interviews/research-skills
+  /plugin install research-planning
+  ```
+- **Install in Claude.ai:** Build the ZIP (`./scripts/build-skill-zip.sh` from repo root, or download from a release once published), then upload at Settings → Customize → Skills.
+- **Best for:** anyone scoping a study — PMs, designers, customer-success, founders, or researchers. Especially useful when you're not sure what you should research, or when you want a defensible methodology stance built in.
 
-The brief is portable — drop it into User Interviews MCP, Maze, Lyssna, or any recruiting workflow you use.
+[→ See `research-planning/skills/research-planning/SKILL.md` for the full workflow definition.](research-planning/skills/research-planning/SKILL.md)
 
-## Install
+## What's coming
 
-In Claude Code:
+This repo is being built workflow-by-workflow. Other research workflows are in design and prototyping; specifics will land here as they ship. The pattern stays the same: each new workflow gets its own top-level folder, install paths for the surfaces it ships on, and a card in this README.
+
+## Repo structure
 
 ```
-/plugin marketplace add user-interviews/research-skills
+research-skills/
+├── README.md                              # this file
+├── .claude-plugin/marketplace.json        # registers all plugins
+├── scripts/build-skill-zip.sh             # builds the chat-skill ZIP for upload
+├── research-planning/                     # WORKFLOW — full plugin package
+│   ├── .claude-plugin/plugin.json
+│   ├── agents/                            # plugin-only (sub-agents)
+│   ├── commands/                          # plugin-only (slash commands)
+│   ├── evals/                             # workflow-level eval suite
+│   └── skills/research-planning/          # the load-bearing skill (powers both surfaces)
+│       ├── SKILL.md
+│       ├── references/                    # methodology references
+│       └── assets/                        # templates + version metadata
+└── dist/                                  # build artifacts (git-ignored)
 ```
 
-Then install whichever plugin(s) you want:
+Adding a new workflow means creating a new top-level folder with the same shape. No reference duplication; one canonical location per workflow.
 
-```
-/plugin install research-planning@research-skills
-```
+## Forking + customization
 
-## Available skills
+Each workflow's skill includes a `references/team-context.md` template at `research-planning/skills/research-planning/references/team-context.md`. Your team's preferences (voice, default methodology, custom personas, terminology swaps, custom handoff text) go there. Fork the repo, edit the template, rebuild the ZIP (or re-install the plugin), and the workflows pick up your team's overrides.
 
-### `research-planning`
+## Contributing
 
-Turn a research question into a structured research brief, drawing on User Interviews' published planning playbook. Apply UI's frameworks for decision-driven research, methodology selection, and AI-moderation fit.
-
-Invoke with: `/plan-research "your research question"`
-
-The brief is portable to any execution tool — Maze, Lyssna, UserTesting, an internal panel, or User Interviews MCP for direct project creation. See [`research-planning/README.md`](research-planning/README.md) for details.
-
-## Roadmap
-
-This is the first plugin in the repo. Future plugins may include:
-
-- A research-brief-to-MCP handoff helper (currently the handoff is a paste-and-go conversation pattern)
-- Synthesis / analysis skills paired with research planning
-- Customer-facing screener authoring assistance
-
-If you have an idea for a plugin that belongs here, open an issue or PR.
-
-## Customization
-
-Each plugin has its own `team-context/` directory for per-team customization. See the plugin's README and `team-context/README.md` for the schema.
-
-The skills are designed to be forked. If your fork adds value that would help other teams, consider opening a PR upstream.
+Internal for now. If you're at User Interviews and want to propose a new workflow for this repo, talk to Paolo. External contributions are not currently accepted; we'll revisit when the repo's contribution shape is clearer.
 
 ## License
 
-MIT.
-
-## Maintained by
-
-[User Interviews](https://www.userinterviews.com) — the research platform that helps companies talk to customers.
+MIT

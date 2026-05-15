@@ -28,7 +28,7 @@ The skill treats three outcomes as first-class:
 
 ## Customization
 
-If `team-context/team-context.md` exists in your fork of this plugin, the skill reads it and applies per-team overrides (voice, terminology, custom personas, default methodology, custom handoff text).
+If `skills/research-planning/references/team-context.md` exists in your fork of this plugin, the skill reads it and applies per-team overrides (voice, terminology, custom personas, default methodology, custom handoff text).
 
 The skill also reads `.claude/research-planning.local.md` in your current project if present, surfacing your past tool choices as defaults. You can opt-in to write to that file at the end of any session.
 
