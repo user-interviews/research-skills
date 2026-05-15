@@ -57,7 +57,7 @@ Inputs to capture:
 - Timeline, budget, tools.
 - Role of AI (input / pressure-test / never substitute).
 
-The brief's 6-field structure (`templates/default-brief.md`) is the natural output of this phase.
+The brief's 6-field structure (`assets/default-brief.md`) is the natural output of this phase.
 
 ### Phase 4: Exploration
 
