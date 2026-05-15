@@ -14,6 +14,8 @@ Load this when starting Phase 2 Stream 1 (Local workspace scan). The Phase 1 bro
 
 Extract scan terms from the Phase 1 surface, not from a fixed taxonomy. Weight project- and topic-specific keywords over generic research vocabulary.
 
+**Before applying keyword strategies, the agent excludes paths and content matching the Sensitive-path denylist (see below).** Denylist filtering runs first; keyword matching only sees the remaining set.
+
 **Weight up:**
 
 - Project names the user actually said ("PCA," "skill-sharing rollout," "the v2 onboarding redesign").
@@ -59,6 +61,47 @@ The cap is conservative on purpose. Better to read two high-signal files in full
 - The scan has produced enough to either trigger an exit or fill the gaps Phase 1 left. Stop.
 
 **Negative result is a valid output.** If the scan finds nothing relevant, report the negative ("Looked for files matching X, Y, Z — nothing relevant in your workspace") and fall back to interview-only mode for the rest of Phase 2. Do not flag the absence as a problem; many workspaces don't have prior research on the topic and that's fine.
+
+---
+
+## Sensitive-path denylist (skip these always)
+
+Some files and directories should never be read by the workspace scan, regardless of how well their names match the user's topic keywords. The denylist applies BEFORE keyword matching — the agent does not include matched results from these paths in its candidate file list.
+
+**Hard denylist (file/directory patterns):**
+- `.env`, `.env.*`, `.env.local`, `.env.production`, etc.
+- `.git/`, `.git/**`
+- `.ssh/`, `.ssh/**`
+- `.aws/`, `.aws/**`
+- `.config/`, `.config/**`
+- `credentials*`, `*credentials*`
+- `*.pem`, `*.key`, `*.cert`, `*.crt`
+- `id_rsa*`, `id_ed25519*`, `id_dsa*`
+- `.netrc`
+- `.docker/config.json`
+- `node_modules/`, `node_modules/**`
+- `.terraform/`, `.terraform/**`
+- `vendor/`, `vendor/**`
+- `__pycache__/`, `*.pyc`
+- `dist/`, `build/`, `target/`, `out/`
+
+**Content-shape sniff (read-time safety check):**
+
+If a file passes the path-denylist but its first ~200 characters look like credentials, stop reading and exclude from scan output. Signals to abort on:
+- Strings matching `[A-Za-z0-9+/]{40,}=*` (base64 blob; often API keys or JWT)
+- Header lines like `-----BEGIN [PRIVATE|RSA|OPENSSH|CERTIFICATE]`
+- Key-value blocks like `(api[_-]?key|secret|token|password)\s*[:=]\s*[A-Za-z0-9_\-+/=]{16,}`
+- AWS-shaped access keys (`AKIA[0-9A-Z]{16}`) or AWS secret-shaped strings
+- GitHub PAT shape (`gh[ps]_[A-Za-z0-9]{36}`)
+
+When the content-shape sniff fires, the agent should:
+1. Stop reading that file immediately
+2. Note in narration: *"Skipped [filename] — looks like credentials"*
+3. Not include the content in the synthesis presented to the user
+
+**Why two layers:**
+
+Claude Code has its own permission system. The denylist + sniff is defense-in-depth: even if the user has `Read(*)` auto-allowed, or auto-approves prompts out of habit, the plugin's own discipline prevents reading these paths. The user can't predict which keyword-matched files might be sensitive; the denylist makes that decision for them.
 
 ---
 
