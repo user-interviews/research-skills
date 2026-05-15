@@ -324,6 +324,22 @@ The handoff is one short paragraph. No cheerleading. No "would you like me to la
 
 ---
 
+## Validation diff (post-draft, pre-presentation)
+
+Before showing the brief to the user, do a lightweight check that the brief's stated fields match the state contract you assembled.
+
+For each field in the contract (**Why**, **Decision**, **Stakeholders**, **Research subjects**, **Method direction**, **Sample size**, **Timeline**, **User-selected tools**), verify the brief contains roughly the same value. Exact text doesn't need to match — semantic equivalence is enough — but a clear divergence (contract says X, brief says Y) means the drafter either invented or substituted a value the contract didn't carry.
+
+If a divergence is detected, surface it to the user *with* the brief — don't suppress, don't silently rewrite, don't reject the brief:
+
+> *"Heads up: the brief shows [X] for Stakeholders, but I had [Y] in the working state we confirmed. Did the drafter substitute, or do you want me to amend?"*
+
+This is a defensive check — most of the time it'll be silent. Don't narrate when there's no divergence. Don't reject the brief on divergence; surface and let the user resolve.
+
+If you drafted inline (main thread, no sub-agent), this check still applies — it catches inline-drafting drift the same way it catches sub-agent drift. The check is cheap, runs once, and runs locally; there's no excuse to skip it.
+
+---
+
 ## Polish — iterate on the brief (main thread)
 
 Once the brief is on the screen, treat every follow-up turn as an amendment against the existing artifact, not a new request. Polish stays in the main thread — small amendments are conversational and don't need a sub-agent round-trip.
@@ -466,6 +482,7 @@ Listed in approximate frequency order. Each is an eval candidate.
 - Treat re-invocation mid-conversation as fresh Interview when a brief is already on the screen.
 - Run web search by default. Conditional on the audience-accessibility heuristic; opt-in otherwise.
 - Auto-capture methodology preferences or other implicit signals to the preferences file. Only confirmed tool choices, only at the opt-in moment.
+- Skip the post-draft validation diff. The check is cheap and catches drafter drift (sub-agent or main-thread) before the brief reaches the user.
 
 ---
 
