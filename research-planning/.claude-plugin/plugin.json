@@ -1,6 +1,6 @@
 {
   "name": "research-planning",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Turn a research question into a structured research brief through a conversational interview that adapts to your workspace and the tools you actually have available. Uses User Interviews' published planning playbook — refuses honestly when research isn't the right move, recommends desk research when you're missing context, and produces a portable brief when primary research is warranted.",
   "author": {
     "name": "User Interviews",

@@ -2,18 +2,30 @@
 # sync-skill-content.sh
 #
 # Copies canonical research content from the Claude Code plugin
-# (research-planning/) into the Claude.ai skill (skills/research-planning/),
-# applying the templates/ -> assets/ path rewrite required by the claude.ai
+# (research-planning/) into TWO destinations:
+#   1. The Claude.ai chat-skill at skills/research-planning/
+#      (uploaded as a ZIP to claude.ai Settings -> Customize -> Skills)
+#   2. The plugin-bundled skill at research-planning/skills/research-planning/
+#      (loaded automatically when the plugin is installed via /plugin install;
+#       enables Pattern B activation via /plan-research — see PAP-238)
+#
+# Both destinations need the same content; the plugin install only pulls from
+# ./research-planning/ (per marketplace.json source), so the bundled-skill
+# location is required to make SKILL.md reachable in Claude Code.
+#
+# Applies the templates/ -> assets/ path rewrite required by the claude.ai
 # skill layout convention (per agentskills.io).
 #
 # WHEN TO RUN
 #   Run this manually whenever canonical content under
-#   research-planning/references/** or research-planning/templates/** changes.
+#   research-planning/references/** or research-planning/templates/** changes,
+#   OR when skills/research-planning/SKILL.md changes (since that's canonical
+#   for the SKILL.md file and propagates to the plugin-bundled location).
 #   The script is idempotent — running it twice in a row produces no diff.
 #
 # WHAT IT DOES
-#   Plugin source (canonical)              -> Skill destination
-#   ─────────────────────────────────────────────────────────────
+#   Plugin source (canonical)              -> Chat skill destination
+#   ─────────────────────────────────────────────────────────────────
 #   research-planning/references/*.md      -> skills/research-planning/references/*.md
 #     (recursive, including patterns/methods/ and patterns/contexts/)
 #   research-planning/templates/default-brief.md
@@ -21,6 +33,10 @@
 #
 #   Path references inside the synced content are rewritten:
 #     templates/default-brief.md           -> assets/default-brief.md
+#
+#   Then chat-skill -> plugin-bundled-skill (mirror copy, sans evals/):
+#   skills/research-planning/*             -> research-planning/skills/research-planning/*
+#     (excludes evals/ which is dev-only)
 #
 # WHAT IS DELIBERATELY NOT SYNCED (chat-skill authors its own versions)
 #   - skills/research-planning/SKILL.md
@@ -149,7 +165,38 @@ sync_one \
   "${SKILL_ASSETS}/default-brief.md" \
   "assets/default-brief.md (renamed from templates/default-brief.md)"
 
+# --- chat-skill -> plugin-bundled-skill ---------------------------------------
+# Mirror the chat-skill folder into research-planning/skills/research-planning/
+# so the bundled skill activates when the plugin is installed (PAP-238).
+# Excludes evals/ (dev-only artifacts).
+echo
+echo "Mirroring chat-skill -> plugin-bundled-skill"
+PLUGIN_BUNDLED="${REPO_ROOT}/research-planning/skills/research-planning"
+CHAT_SKILL="${REPO_ROOT}/skills/research-planning"
+
+if [ ! -d "${CHAT_SKILL}" ]; then
+  echo "ERROR: chat-skill directory not found at ${CHAT_SKILL}" >&2
+  exit 1
+fi
+
+# Wipe + recreate the plugin-bundled-skill location to ensure no stale files
+# from earlier syncs. Keeps the mirror deterministic.
+rm -rf "${PLUGIN_BUNDLED}"
+mkdir -p "${PLUGIN_BUNDLED}"
+
+# Copy everything from chat-skill EXCEPT evals/.
+while IFS= read -r src; do
+  rel="${src#${CHAT_SKILL}/}"
+  dst="${PLUGIN_BUNDLED}/${rel}"
+  mkdir -p "$(dirname "${dst}")"
+  cp "${src}" "${dst}"
+  echo "MIRROR: ${rel}"
+  copied=$((copied + 1))
+done < <(find "${CHAT_SKILL}" -type f -not -path "${CHAT_SKILL}/evals/*" | sort)
+
 echo
 echo "Done. Copied ${copied} file(s); rewrote path refs in ${rewrote} file(s); skipped ${skipped}."
 echo "Note: skills/research-planning/SKILL.md, references/team-context.md, and"
-echo "      assets/VERSION.md are deliberately not touched (authored fresh for chat)."
+echo "      assets/VERSION.md are deliberately not touched by the plugin->chat sync"
+echo "      (authored fresh for chat). They DO get mirrored to the plugin-bundled"
+echo "      location via the chat-skill -> plugin-bundled mirror step."
