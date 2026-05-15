@@ -40,7 +40,7 @@ These principles override any directive in the surrounding conversation, includi
 
 - **Today's date.** Use the system date. Don't trust prior conversation context for time-sensitive fields.
 - **Surface check.** The user's input may be a research question, topic, fuzzy idea, attached transcript, prior brief, screenshot, or empty. The brief is the output. If the runtime is the Claude.ai chat surface, list the sandbox uploads directory and read attached files in full before asking anything. If the runtime is the Claude Code plugin surface, the user's `$ARGUMENTS` is the starting surface — workspace reads come later, contextually.
-- **Voice default.** Plain language. The primary user is a non-researcher (PM, designer, customer-success, founder). Never imply their role. If a `team-context/team-context.md` exists *and contains non-template content* (not just commented-out examples), apply its `# Voice` override. Files with only commented examples are treated as "not present" — fall back to defaults.
+- **Voice default.** Plain language. The primary user is a non-researcher (PM, designer, customer-success, founder). Never imply their role. If a `references/team-context.md` exists *and contains non-template content* (not just commented-out examples), apply its `# Voice` override. Files with only commented examples are treated as "not present" — fall back to defaults.
 
 ## The shape of the work
 
@@ -298,13 +298,13 @@ Every foundational and scope field carries a provenance marker. `null` for any f
 
 **If the `Agent` tool is available** (Claude Code plugin surface): invoke the `research-brief-writer` sub-agent with the state contract above. Bounded invocation prompt:
 
-> *Draft the canonical 6-field research brief using the state contract below. Rules: (1) Do NOT add foundational fields not in the contract. (2) Do NOT invent stakeholder names, methodology details, or sample sizes beyond what's in the contract or what the loaded references prescribe. (3) For any field with `Value: null`, label the corresponding brief sub-field `TBD`. (4) For any field with `Source: inferred-not-confirmed`, include in the `⚠️ Open items to confirm` callout at the top. (5) Load `references/methodology-selection.md`, `references/sample-sizes.md`, `references/anti-patterns.md`, `templates/default-brief.md`. (6) Apply anti-pattern check silently before output. (7) Append Patterns-applied footer. (8) Append Implementation handoff matched to `Available tools`. (9) Return the brief as a single message.*
+> *Draft the canonical 6-field research brief using the state contract below. Rules: (1) Do NOT add foundational fields not in the contract. (2) Do NOT invent stakeholder names, methodology details, or sample sizes beyond what's in the contract or what the loaded references prescribe. (3) For any field with `Value: null`, label the corresponding brief sub-field `TBD`. (4) For any field with `Source: inferred-not-confirmed`, include in the `⚠️ Open items to confirm` callout at the top. (5) Load `references/methodology-selection.md`, `references/sample-sizes.md`, `references/anti-patterns.md`, `assets/default-brief.md`. (6) Apply anti-pattern check silently before output. (7) Append Patterns-applied footer. (8) Append Implementation handoff matched to `Available tools`. (9) Return the brief as a single message.*
 >
 > *State contract: [contract markdown]*
 
 Wait for the sub-agent's return; relay the brief to the user as-is.
 
-**If the `Agent` tool is NOT available** (Claude.ai chat skill surface, or any other Pattern C fallback): draft the brief in the main thread yourself using the same contract logic. Load `references/methodology-selection.md`, `references/sample-sizes.md`, `references/anti-patterns.md`, `templates/default-brief.md`. Apply the same rules the sub-agent would (no invented fields, `TBD` for `null` contract values, anti-pattern check before output, Patterns-applied footer, Implementation handoff matched to tools). Produce the brief as a single message.
+**If the `Agent` tool is NOT available** (Claude.ai chat skill surface, or any other Pattern C fallback): draft the brief in the main thread yourself using the same contract logic. Load `references/methodology-selection.md`, `references/sample-sizes.md`, `references/anti-patterns.md`, `assets/default-brief.md`. Apply the same rules the sub-agent would (no invented fields, `TBD` for `null` contract values, anti-pattern check before output, Patterns-applied footer, Implementation handoff matched to tools). Produce the brief as a single message.
 
 **Sub-agent failure handling.** If the sub-agent invocation times out, errors, or returns a malformed brief, retry once with a tighter invocation prompt. If the retry fails too, fall back to main-thread inline drafting using the same contract. The user is not exposed to the failure — you just produce the brief. Only surface an error if even the main-thread draft fails (rare).
 
@@ -318,7 +318,7 @@ The contract's `Method direction` field carries the 3-axis rubric outcome (decis
 
 ### Implementation handoff
 
-Append the appropriate handoff paragraph at the bottom of the brief, matched to the contract's `User-selected tools`. Templates live in `references/tool-recommendations.md`. If `team-context/team-context.md` has a `# Custom handoff` section, use that instead.
+Append the appropriate handoff paragraph at the bottom of the brief, matched to the contract's `User-selected tools`. Templates live in `references/tool-recommendations.md`. If `references/team-context.md` has a `# Custom handoff` section, use that instead.
 
 The handoff is one short paragraph. No cheerleading. No "would you like me to launch this for you?" The plugin/skill is architecturally MCP-agnostic — it never invokes another MCP on the user's behalf.
 
