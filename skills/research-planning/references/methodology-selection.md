@@ -193,7 +193,7 @@ Method selection produces:
 3. **Role of AI** if AI is involved — input, pressure-test, or never substitute (see `references/anti-patterns.md`).
 4. **Moderation type** — human, AI, or unmoderated.
 
-These fill the "How" and "Who" sections of `templates/default-brief.md`.
+These fill the "How" and "Who" sections of `assets/default-brief.md`.
 
 ---
 

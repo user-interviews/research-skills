@@ -141,6 +141,6 @@ Michele Ronsen, verbatim: *"research as a weapon... they're conducting user rese
 
 ## After the gate
 
-If the request passes all seven checks, proceed to question refinement (`references/question-writing.md`) → methodology selection (`references/methodology-selection.md`) → draft brief (`templates/default-brief.md`).
+If the request passes all seven checks, proceed to question refinement (`references/question-writing.md`) → methodology selection (`references/methodology-selection.md`) → draft brief (`assets/default-brief.md`).
 
 If the request fails, refuse-or-redirect with the specific language above. Don't soften. The gate exists because soft refusals produce bad briefs.
