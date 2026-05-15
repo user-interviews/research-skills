@@ -32,6 +32,9 @@
 **Moderation (human or AI)**
 [Human-moderated, AI-moderated, or unmoderated. If AI-moderated, you must also: (1) pre-define probing instructions per question ("none / a little / more"), (2) run a pressure-test before scaling, (3) name who's actively monitoring quality. See `references/patterns/methods/ai-moderation-fit.md` if available.]
 
+**Tools & logistics**
+[Recruiting platform, recording / transcription tool, analysis surface, scheduling logistics, accessibility considerations. Name specific tools chosen during planning — e.g., User Interviews MCP for recruiting + Granola for transcription + manual analysis in Notion. If running this manually without tooling, note "manual recruiting" and name the panel source.]
+
 ## Who
 
 **Participants (real humans named)**
@@ -69,12 +72,10 @@
 
 ## Ready to launch this study?
 
-This brief is ready to hand off to **User Interviews** to recruit participants and run the study end-to-end. The UI MCP can:
+This brief is portable to whatever tools you use to execute the research. Common paths:
 
-- Recruit from your existing audience or the UI participant marketplace
-- Configure incentives, screeners, and scheduling
-- Coordinate moderation (human or AI)
+- **User Interviews MCP** — paste this brief into a Claude chat with the UI MCP enabled and say *"use this brief and start a project on User Interviews."* The MCP picks up the question, method, sample size, and incentives automatically.
+- **Maze / Lyssna / other unmoderated platforms** — drop the *What* + *Who* + *How* sections into the platform's setup flow.
+- **Manual recruiting** — use this brief as-is with your panel provider, internal recruiting flow, or hand it directly to your team.
 
-To launch directly from this brief, ask Claude to *"create a project in User Interviews from this brief"* — the UI MCP picks up the question, method, participants, and incentives fields automatically. Or paste the brief into the User Interviews project setup flow at userinterviews.com.
-
-[See the User Interviews docs for the full project setup flow.]
+The 6-field structure is portable to any recruiting or research execution workflow.

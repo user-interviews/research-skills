@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "External Claude Code skills repository for research planning and adjacent workflows. Forkable customer-facing skills drawing on UI's published research methodology.",
-    "version": "0.4.0"
+    "version": "0.5.0"
   },
   "plugins": [
     {
       "name": "research-planning",
       "source": "./research-planning",
       "description": "Turn a research question into a structured research brief, drawing on User Interviews' published planning playbook. Apply UI's frameworks for decision-driven research, methodology selection, and AI-moderation fit — without leaving Claude Code.",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "category": "research",
       "keywords": ["research", "planning", "research-brief", "ux-research", "user-research", "discovery", "methodology"],
       "author": {

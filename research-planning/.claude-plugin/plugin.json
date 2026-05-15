@@ -1,7 +1,7 @@
 {
   "name": "research-planning",
-  "version": "0.4.0",
-  "description": "Turn a research question into a structured research brief, drawing on User Interviews' published planning playbook. Apply UI's frameworks for decision-driven research, methodology selection, and AI-moderation fit.",
+  "version": "0.5.0",
+  "description": "Turn a research question into a structured research brief through a 4-phase interview / research / plan / handoff flow, drawing on User Interviews' published planning playbook. Applies UI's frameworks for decision-driven research, methodology selection, and AI-moderation fit — and redirects honestly when research isn't the right move.",
   "author": {
     "name": "User Interviews",
     "url": "https://www.userinterviews.com"
