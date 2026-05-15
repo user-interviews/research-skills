@@ -1,8 +1,14 @@
 # research-planning skill — version
 
-**Version:** 0.1.0
+**Version:** 0.6.0
 **Released:** 2026-05-15
 **Source:** https://github.com/user-interviews/research-skills/tree/main/skills/research-planning
+
+This release jumps directly from 0.1.0 (initial skill ship) to 0.6.0 to match the
+companion Claude Code plugin. v0.6.0 is the Pattern B convergence — the same
+SKILL.md powers both the Claude Code plugin and this Claude.ai skill, with a
+runtime branch that adapts to surface-specific affordances (sub-agent invocation
+on Claude Code; inline drafting in main thread on Claude.ai).
 
 ## How to update
 
